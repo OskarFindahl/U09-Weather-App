@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Moment from "react-moment";
 import Now from "./components/Now";
 import Weekley from "./components/Weekley";
+import Hourly from "./components/Hourly";
 
 function App() {
   const [state, setState] = useState();
@@ -19,6 +20,7 @@ function App() {
   const [sunset, setSunset] = useState();
   const [icon, setIcon] = useState();
   const [data, setData] = useState();
+  const [dataEveryThirdHour, setDataEveryThirdHour] = useState();
 
   useEffect(() => {
     getPosition()
@@ -53,7 +55,15 @@ function App() {
     setSunset(data.current.sunset * 1000);
     setIcon(data.current.weather[0].icon);
     setData(data);
+
+    const dataThirdHout = data.hourly.filter(
+      (thirdHour, index) => !(index % 3) && index < 24
+    );
+
+    setDataEveryThirdHour(dataThirdHout);
   };
+
+  console.log(dataEveryThirdHour);
 
   const toggleTemp = () => {
     temp !== tempF ? setTemp(tempF) : setTemp(tempC);
@@ -84,6 +94,19 @@ function App() {
         path="/week"
         render={(props) => (
           <>{data ? <Weekley data={data} /> : "No Weather To Show"}</>
+        )}
+      />
+
+      <Route
+        path="/hour"
+        render={(props) => (
+          <>
+            {dataEveryThirdHour ? (
+              <Hourly data={dataEveryThirdHour} />
+            ) : (
+              "No Weather To Show"
+            )}
+          </>
         )}
       />
     </Router>

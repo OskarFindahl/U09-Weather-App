@@ -5,6 +5,10 @@ import Moment from "react-moment";
 const Now = ({ data }) => {
   return (
     <div className="weatherbox">
+      <Moment className="text1" format="HH:ddd">
+        {data.dt * 1000}
+      </Moment>
+
       {/* <div onClick={toggleTemp} className="text1">
         {temp}
         {tempLabel}
