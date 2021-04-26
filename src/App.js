@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Moment from "react-moment";
 import Now from "./components/Now";
+import Weekley from "./components/Weekley";
 
 function App() {
   const [state, setState] = useState();
@@ -67,15 +68,22 @@ function App() {
           <>
             {data ? (
               <Now
-                data={data}
-                toggleTemp={toggleTemp}
-                tempLabel={tempLabel}
-                temp={temp}
+                data={data.current}
+                // toggleTemp={toggleTemp}
+                // tempLabel={tempLabel}
+                // temp={temp}
               />
             ) : (
               "No Weather To Show"
             )}
           </>
+        )}
+      />
+
+      <Route
+        path="/week"
+        render={(props) => (
+          <>{data ? <Weekley data={data} /> : "No Weather To Show"}</>
         )}
       />
     </Router>

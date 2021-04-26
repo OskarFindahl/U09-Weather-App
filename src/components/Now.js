@@ -1,28 +1,30 @@
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-const Now = ({ data, toggleTemp, tempLabel, temp }) => {
+//toggleTemp, tempLabel, temp
+const Now = ({ data }) => {
   return (
     <div className="weatherbox">
-      <div onClick={toggleTemp} className="text1">
+      {/* <div onClick={toggleTemp} className="text1">
         {temp}
         {tempLabel}
-      </div>
+      </div> */}
+
       <div className="icon">
         <img
           className="weather-icon"
-          src={`http://openweathermap.org/img/w/${data.current.weather[0].icon}.png`}
+          src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
           alt="weather icon"
         />
       </div>
       <div className="text2">
-        Humidity: {data.current.humidity} %
+        Humidity: {data.humidity} %
         <br />
-        Wind: {data.current.wind_speed} m/s
+        Wind: {data.wind_speed} m/s
         <br />
-        Sunrise: <Moment format="H:mm">{data.current.sunrise}</Moment>
+        Sunrise: <Moment format="H:mm">{data.sunrise * 1000}</Moment>
         <br />
-        Sunset: <Moment format="H:mm ">{data.current.sunset}</Moment>
+        Sunset: <Moment format="H:mm ">{data.sunset * 1000}</Moment>
       </div>
     </div>
   );
