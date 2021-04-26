@@ -1,1 +1,43 @@
+.weatherbox {
+  position: absolute;
+  width: 600px;
+  height: 300px;
 
+  background: linear-gradient(
+    101.57deg,
+    #a72baa 15.1%,
+    rgba(255, 0, 46, 0) 98.53%
+  );
+  border-radius: 15px;
+}
+
+.text1 {
+  padding: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 75px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+
+.text2 {
+  padding: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 33px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+
+.icon {
+  float: right;
+  padding-right: 200px;
+  width: 50px;
+  height: 50px;
+}
