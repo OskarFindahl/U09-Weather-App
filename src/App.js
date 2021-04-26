@@ -1,7 +1,8 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Moment from "react-moment";
+import Now from "./components/Now";
 
 function App() {
   const [state, setState] = useState();
@@ -16,6 +17,7 @@ function App() {
   const [sunrise, setSunrise] = useState();
   const [sunset, setSunset] = useState();
   const [icon, setIcon] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
     getPosition()
@@ -49,6 +51,7 @@ function App() {
     setSunrise(data.current.sunrise * 1000);
     setSunset(data.current.sunset * 1000);
     setIcon(data.current.weather[0].icon);
+    setData(data);
   };
 
   const toggleTemp = () => {
@@ -57,28 +60,25 @@ function App() {
   };
 
   return (
-    <div className="weatherbox">
-      <div onClick={toggleTemp} className="text1">
-        {temp}
-        {tempLabel}
-      </div>
-      <div className="icon">
-        <img
-          className="weather-icon"
-          src={`http://openweathermap.org/img/w/${icon}.png`}
-          alt="weather icon"
-        />
-      </div>
-      <div className="text2">
-        Humidity: {humidity} %
-        <br />
-        Wind: {windspeed} m/s
-        <br />
-        Sunrise: <Moment format="H:mm">{sunrise}</Moment>
-        <br />
-        Sunset: <Moment format="H:mm ">{sunset}</Moment>
-      </div>
-    </div>
+    <Router>
+      <Route
+        path="/now"
+        render={(props) => (
+          <>
+            {data ? (
+              <Now
+                data={data}
+                toggleTemp={toggleTemp}
+                tempLabel={tempLabel}
+                temp={temp}
+              />
+            ) : (
+              "No Weather To Show"
+            )}
+          </>
+        )}
+      />
+    </Router>
   );
 }
 
