@@ -1,26 +1,16 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Moment from "react-moment";
 import Now from "./components/Now";
 import Weekley from "./components/Weekley";
 import Hourly from "./components/Hourly";
 
 function App() {
   const [state, setState] = useState();
-  const [lat, setLat] = useState();
-  const [lon, setLon] = useState();
-  const [tempC, setTempC] = useState();
-  const [tempF, setTempF] = useState();
-  const [temp, setTemp] = useState();
-  const [tempLabel, setTempLabel] = useState("\xB0" + "C");
-  const [humidity, setHumidity] = useState();
-  const [windspeed, setWindspeed] = useState();
-  const [sunrise, setSunrise] = useState();
-  const [sunset, setSunset] = useState();
-  const [icon, setIcon] = useState();
   const [data, setData] = useState();
   const [dataEveryThirdHour, setDataEveryThirdHour] = useState();
+  const [dataFiveDays, setDataFiveDays] = useState();
+  const [tempFSet, setTempFSet] = useState("false");
 
   useEffect(() => {
     getPosition()
@@ -44,45 +34,30 @@ function App() {
     );
     const data = await api_call.json();
 
-    setLat(latitude);
-    setLon(longitude);
-    setTempC(data.current.temp);
-    setTempF(data.current.temp * 1.8 + 32);
-    setTemp(data.current.temp);
-    setHumidity(data.current.humidity);
-    setWindspeed(data.current.wind_speed);
-    setSunrise(data.current.sunrise * 1000);
-    setSunset(data.current.sunset * 1000);
-    setIcon(data.current.weather[0].icon);
-    setData(data);
-
-    const dataThirdHout = data.hourly.filter(
-      (thirdHour, index) => !(index % 3) && index < 24
+    const dataThirdHour = data.hourly.filter(
+      (data, index) => !(index % 3) && index < 24
     );
 
-    setDataEveryThirdHour(dataThirdHout);
+    const dataFiveDays = data.daily.filter((data, index) => index < 5);
+
+    setData(data);
+    setDataEveryThirdHour(dataThirdHour);
+    setDataFiveDays(dataFiveDays);
   };
 
-  console.log(dataEveryThirdHour);
-
   const toggleTemp = () => {
-    temp !== tempF ? setTemp(tempF) : setTemp(tempC);
-    temp !== tempF ? setTempLabel("\xB0" + "F") : setTempLabel("\xB0" + "C");
+    tempFSet === "false" ? setTempFSet("true") : setTempFSet("false");
   };
 
   return (
     <Router>
+      <button onClick={toggleTemp}>Toggle temp</button>
       <Route
         path="/now"
         render={(props) => (
           <>
             {data ? (
-              <Now
-                data={data.current}
-                // toggleTemp={toggleTemp}
-                // tempLabel={tempLabel}
-                // temp={temp}
-              />
+              <Now data={data.current} tempFSet={tempFSet} />
             ) : (
               "No Weather To Show"
             )}
@@ -93,7 +68,13 @@ function App() {
       <Route
         path="/week"
         render={(props) => (
-          <>{data ? <Weekley data={data} /> : "No Weather To Show"}</>
+          <>
+            {dataFiveDays ? (
+              <Weekley data={dataFiveDays} />
+            ) : (
+              "No Weather To Show"
+            )}
+          </>
         )}
       />
 

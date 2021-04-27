@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-//toggleTemp, tempLabel, temp
-const Now = ({ data }) => {
+//
+const Now = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox">
       <Moment className="text1" format="HH:ddd">
         {data.dt * 1000}
       </Moment>
 
-      {/* <div onClick={toggleTemp} className="text1">
-        {temp}
-        {tempLabel}
-      </div> */}
+      <div className="text1">
+        {tempFSet === "false"
+          ? `${Math.round(data.temp)}\xB0C`
+          : `${Math.round(data.temp * 1.8 + 32)}\xB0F`}
+      </div>
 
       <div className="icon">
         <img

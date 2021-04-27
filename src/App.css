@@ -2,11 +2,8 @@
   width: 600px;
   height: 300px;
 
-  background: linear-gradient(
-    101.57deg,
-    #a72baa 15.1%,
-    rgba(255, 0, 46, 0) 98.53%
-  );
+  background: linear-gradient(103.74deg, #a72baa 35.42%, #4800e1 98.49%);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
 }
 
