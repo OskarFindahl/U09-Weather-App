@@ -36,6 +36,13 @@
   display: flex;
   width: 600px;
   justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dataContainerSmall {
+  display: flex;
+  width: 280px;
 }
 
 h2 {
@@ -45,8 +52,6 @@ h2 {
   font-weight: normal;
   font-size: 64px;
   line-height: 75px;
-  /* identical to box height */
-
   color: #ffffff;
 }
 
@@ -57,8 +62,6 @@ h3 {
   font-weight: normal;
   font-size: 28px;
   line-height: 33px;
-  /* identical to box height */
-
   color: #ffffff;
 }
 
@@ -74,7 +77,6 @@ h3 {
 }
 
 .multi-button {
-  /* filter: drop-shadow(3px 10px 15px rgba(0, 0, 0, 0.45)); */
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   width: 600px;
   display: flex;
@@ -112,4 +114,30 @@ h3 {
 .nav-button:active {
   filter: none;
   transform: scale(0.95);
+}
+
+.upper-nav-button {
+  border-radius: 10px;
+  height: 40px;
+  width: 200px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #4800e1;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+  color: #a72baa;
+  filter: none;
+}
+
+.upper-nav-button:hover {
+  cursor: pointer;
+  background: linear-gradient(103.74deg, #a72baa 35.42%, #4800e1 98.49%);
+  color: #ffffff;
+}
+
+.upper-nav-button:active {
+  filter: none;
 }

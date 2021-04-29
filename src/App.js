@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Now from "./components/Now";
 import Weekley from "./components/Weekley";
 import Hourly from "./components/Hourly";
+import Overviews from "./components/Overviews";
 
 function App() {
   const [state, setState] = useState();
@@ -53,8 +54,16 @@ function App() {
 
   return (
     <Router>
-      <button onClick={toggleTemp}>Toggle temp</button>
+      <div className="dataContainer">
+        <Link className="upper-nav-button" to="/overview">
+          {" "}
+          Overview
+        </Link>
 
+        <div className="upper-nav-button" onClick={toggleTemp}>
+          Toggle temp
+        </div>
+      </div>
       <div className="multi-button">
         <Link className="nav-button" to="/now">
           Now
@@ -66,6 +75,19 @@ function App() {
           Five days
         </Link>
       </div>
+
+      <Route
+        path="/overview"
+        render={(props) => (
+          <>
+            {data ? (
+              <Overviews data={data} tempFSet={tempFSet} />
+            ) : (
+              "No Weather To Show"
+            )}
+          </>
+        )}
+      />
 
       <Route
         path="/now"

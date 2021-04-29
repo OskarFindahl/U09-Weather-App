@@ -1,19 +1,20 @@
 import Moment from "react-moment";
 
-const Hour = ({ data, tempFSet }) => {
+//
+const Overview = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox-small">
       <div className="dataContainerSmall">
         <h3>
-          <Moment className="text2" format="ddd HH">
+          <Moment className="text2" format="dddd">
             {data.dt * 1000}
           </Moment>
         </h3>
 
         <h3>
           {tempFSet === "false"
-            ? `${Math.round(data.temp)}\xB0C`
-            : `${Math.round(data.temp * 1.8 + 32)}\xB0F`}
+            ? `${Math.round(data.temp.day)}\xB0C`
+            : `${Math.round(data.temp.day * 1.8 + 32)}\xB0F`}
         </h3>
 
         <div className="icon">
@@ -29,4 +30,4 @@ const Hour = ({ data, tempFSet }) => {
   );
 };
 
-export default Hour;
+export default Overview;
