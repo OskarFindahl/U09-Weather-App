@@ -1,6 +1,5 @@
 import Moment from "react-moment";
 
-//
 const Overview = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox-small">

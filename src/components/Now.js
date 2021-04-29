@@ -1,26 +1,29 @@
 import Moment from "react-moment";
 
-//
 const Now = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox">
       <h2>
         <Moment format="HH ddd">{data.dt * 1000}</Moment>
       </h2>
+
       <h2>
         {tempFSet === "false"
           ? `${Math.round(data.temp)}\xB0C`
           : `${Math.round(data.temp * 1.8 + 32)}\xB0F`}
       </h2>
+
       <div className="icon">
         <img
           src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
           alt="weather icon"
         />
       </div>
+
       <div className="dataContainer">
         <h3>{data.weather[0].description}</h3>
       </div>
+
       <div className="dataContainer">
         <img className="icon2" src="images/humidity.png" alt="wind icon" />
         <h3>{data.humidity}%</h3>

@@ -15,32 +15,37 @@ function App() {
   const [dataFiveDays, setDataFiveDays] = useState();
   const [tempFSet, setTempFSet] = useState("false");
 
+  //Retrive and wait for position data, then fetch API data
   useEffect(() => {
     getPosition()
       .then((position) => {
         getWeather(position.coords.latitude, position.coords.longitude);
       })
       .catch((err) => {
-        setState(err.message); //errorMessage: err.message
+        setState(err.message);
       });
   }, []);
 
+  //To get user coordinates
   const getPosition = () => {
     return new Promise(function (resolve, reject) {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
   };
 
+  //To get weather data
   const getWeather = async (latitude, longitude) => {
     const api_call = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     );
     const data = await api_call.json();
 
+    //Filter data to get every third hour
     const dataThirdHour = data.hourly.filter(
       (data, index) => !(index % 3) && index < 24
     );
 
+    //Filter data to get only five days
     const dataFiveDays = data.daily.filter((data, index) => index < 5);
 
     setData(data);
@@ -48,6 +53,7 @@ function App() {
     setDataFiveDays(dataFiveDays);
   };
 
+  //Function to switch between temp C and F
   const toggleTemp = () => {
     tempFSet === "false" ? setTempFSet("true") : setTempFSet("false");
   };

@@ -1,6 +1,5 @@
 import Moment from "react-moment";
 
-//
 const Week = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox">
