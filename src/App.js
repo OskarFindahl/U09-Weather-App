@@ -53,81 +53,83 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="dataContainer">
-        <Link className="upper-nav-button" to="/overview">
-          {" "}
-          Overview
-        </Link>
+    <div className="background">
+      <Router>
+        <div className="dataContainer">
+          <Link className="upper-nav-button" to="/overview">
+            {" "}
+            Overview
+          </Link>
 
-        <div className="upper-nav-button" onClick={toggleTemp}>
-          Toggle temp
+          <div className="upper-nav-button" onClick={toggleTemp}>
+            Toggle temp
+          </div>
         </div>
-      </div>
-      <div className="multi-button">
-        <Link className="nav-button" to="/now">
-          Now
-        </Link>
-        <Link className="nav-button" to="/hour">
-          Hourly
-        </Link>
-        <Link className="nav-button" to="/week">
-          Five days
-        </Link>
-      </div>
+        <div className="multi-button">
+          <Link className="nav-button" to="/now">
+            Now
+          </Link>
+          <Link className="nav-button" to="/hour">
+            Hourly
+          </Link>
+          <Link className="nav-button" to="/week">
+            Five days
+          </Link>
+        </div>
 
-      <Route
-        path="/overview"
-        render={(props) => (
-          <>
-            {data ? (
-              <Overviews data={data} tempFSet={tempFSet} />
-            ) : (
-              "No Weather To Show"
-            )}
-          </>
-        )}
-      />
+        <Route
+          path="/overview"
+          render={(props) => (
+            <>
+              {data ? (
+                <Overviews data={data} tempFSet={tempFSet} />
+              ) : (
+                "No Weather To Show"
+              )}
+            </>
+          )}
+        />
 
-      <Route
-        path="/now"
-        render={(props) => (
-          <>
-            {data ? (
-              <Now data={data.current} tempFSet={tempFSet} />
-            ) : (
-              "No Weather To Show"
-            )}
-          </>
-        )}
-      />
+        <Route
+          path="/now"
+          render={(props) => (
+            <>
+              {data ? (
+                <Now data={data.current} tempFSet={tempFSet} />
+              ) : (
+                "No Weather To Show"
+              )}
+            </>
+          )}
+        />
 
-      <Route
-        path="/week"
-        render={(props) => (
-          <>
-            {dataFiveDays ? (
-              <Weekley data={dataFiveDays} tempFSet={tempFSet} />
-            ) : (
-              "No Weather To Show"
-            )}
-          </>
-        )}
-      />
+        <Route
+          path="/week"
+          render={(props) => (
+            <>
+              {dataFiveDays ? (
+                <Weekley data={dataFiveDays} tempFSet={tempFSet} />
+              ) : (
+                "No Weather To Show"
+              )}
+            </>
+          )}
+        />
 
-      <Route
-        path="/hour"
-        render={(props) => (
-          <>
-            {dataEveryThirdHour ? (
-              <Hourly data={dataEveryThirdHour} tempFSet={tempFSet} />
-            ) : (
-              "No Weather To Show"
-            )}
-          </>
-        )}
-      />
-    </Router>
+        <Route
+          path="/hour"
+          render={(props) => (
+            <>
+              {dataEveryThirdHour ? (
+                <Hourly data={dataEveryThirdHour} tempFSet={tempFSet} />
+              ) : (
+                "No Weather To Show"
+              )}
+            </>
+          )}
+        />
+      </Router>
+    </div>
   );
 }
 

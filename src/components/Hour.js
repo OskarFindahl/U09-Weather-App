@@ -24,7 +24,11 @@ const Hour = ({ data, tempFSet }) => {
           />
         </div>
       </div>
-      <h3>{data.weather[0].description}</h3>
+
+      <img className="icon2" src="images/humidity.png" alt="wind icon" />
+      <h3>{data.humidity}%</h3>
+      <img className="icon2" src="images/wind.png" alt="wind icon" />
+      <h3>{data.wind_speed}m/s</h3>
     </div>
   );
 };

@@ -4,6 +4,14 @@
   padding: 0;
 }
 
+.background {
+  background-image: url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 150vmax;
+}
+
 .weatherbox {
   width: 600px;
   height: 300px;
@@ -82,7 +90,7 @@ h3 {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 .nav-button {
@@ -126,10 +134,11 @@ h3 {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 10px;
+  margin: 15px;
   text-align: center;
   color: #a72baa;
   filter: none;
+  background-color: #ffffff56;
 }
 
 .upper-nav-button:hover {
