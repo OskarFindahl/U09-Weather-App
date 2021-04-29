@@ -1,10 +1,11 @@
+import Hour from "./Hour";
 import Now from "./Now";
 
-const Hourly = ({ data }) => {
+const Hourly = ({ data, tempFSet }) => {
   return (
     <>
       {data.map((dataHourly, index) => (
-        <Now key={index} data={dataHourly} />
+        <Hour key={index} data={dataHourly} tempFSet={tempFSet} />
       ))}
     </>
   );

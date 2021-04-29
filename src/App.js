@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Now from "./components/Now";
 import Weekley from "./components/Weekley";
 import Hourly from "./components/Hourly";
@@ -47,11 +48,25 @@ function App() {
 
   const toggleTemp = () => {
     tempFSet === "false" ? setTempFSet("true") : setTempFSet("false");
+    console.log(tempFSet);
   };
 
   return (
     <Router>
       <button onClick={toggleTemp}>Toggle temp</button>
+
+      <div className="multi-button">
+        <Link className="nav-button" to="/now">
+          Now
+        </Link>
+        <Link className="nav-button" to="/hour">
+          Hourly
+        </Link>
+        <Link className="nav-button" to="/week">
+          Five days
+        </Link>
+      </div>
+
       <Route
         path="/now"
         render={(props) => (
@@ -83,7 +98,7 @@ function App() {
         render={(props) => (
           <>
             {dataEveryThirdHour ? (
-              <Hourly data={dataEveryThirdHour} />
+              <Hourly data={dataEveryThirdHour} tempFSet={tempFSet} />
             ) : (
               "No Weather To Show"
             )}
