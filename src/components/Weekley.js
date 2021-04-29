@@ -1,10 +1,10 @@
-import Now from "./Now";
+import Week from "./Week";
 
-const Weekley = ({ data }) => {
+const Weekley = ({ data, tempFSet }) => {
   return (
     <>
       {data.map((dataDaily, index) => (
-        <Now key={index} data={dataDaily} />
+        <Week key={index} data={dataDaily} tempFSet={tempFSet} />
       ))}
     </>
   );

@@ -85,7 +85,7 @@ function App() {
         render={(props) => (
           <>
             {dataFiveDays ? (
-              <Weekley data={dataFiveDays} />
+              <Weekley data={dataFiveDays} tempFSet={tempFSet} />
             ) : (
               "No Weather To Show"
             )}

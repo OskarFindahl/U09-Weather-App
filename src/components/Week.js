@@ -1,16 +1,16 @@
 import Moment from "react-moment";
 
 //
-const Now = ({ data, tempFSet }) => {
+const Week = ({ data, tempFSet }) => {
   return (
     <div className="weatherbox">
       <h2>
-        <Moment format="HH ddd">{data.dt * 1000}</Moment>
+        <Moment format="dddd">{data.dt * 1000}</Moment>
       </h2>
       <h2>
         {tempFSet === "false"
-          ? `${Math.round(data.temp)}\xB0C`
-          : `${Math.round(data.temp * 1.8 + 32)}\xB0F`}
+          ? `${Math.round(data.temp.day)}\xB0C`
+          : `${Math.round(data.temp.day * 1.8 + 32)}\xB0F`}
       </h2>
       <div className="icon">
         <img
@@ -39,4 +39,4 @@ const Now = ({ data, tempFSet }) => {
   );
 };
 
-export default Now;
+export default Week;
