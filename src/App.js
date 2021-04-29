@@ -2,13 +2,14 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 import Now from "./components/Now";
 import Weekley from "./components/Weekley";
 import Hourly from "./components/Hourly";
 import Overviews from "./components/Overviews";
 
 function App() {
-  const [state, setState] = useState();
+  const [state, setState] = useState("No Weather To Show");
   const [data, setData] = useState();
   const [dataEveryThirdHour, setDataEveryThirdHour] = useState();
   const [dataFiveDays, setDataFiveDays] = useState();
@@ -20,7 +21,7 @@ function App() {
         getWeather(position.coords.latitude, position.coords.longitude);
       })
       .catch((err) => {
-        setState({ errorMessage: err.message });
+        setState(err.message); //errorMessage: err.message
       });
   }, []);
 
@@ -49,12 +50,14 @@ function App() {
 
   const toggleTemp = () => {
     tempFSet === "false" ? setTempFSet("true") : setTempFSet("false");
-    console.log(tempFSet);
   };
 
   return (
     <div className="background">
       <Router>
+        <Route exact path="/">
+          <Redirect to="/overview" />
+        </Route>
         <div className="dataContainer">
           <Link className="upper-nav-button" to="/overview">
             {" "}
@@ -84,7 +87,7 @@ function App() {
               {data ? (
                 <Overviews data={data} tempFSet={tempFSet} />
               ) : (
-                "No Weather To Show"
+                <h3 className="dataContainer">{state}</h3>
               )}
             </>
           )}
@@ -97,7 +100,7 @@ function App() {
               {data ? (
                 <Now data={data.current} tempFSet={tempFSet} />
               ) : (
-                "No Weather To Show"
+                <h3 className="dataContainer">{state}</h3>
               )}
             </>
           )}
@@ -110,7 +113,7 @@ function App() {
               {dataFiveDays ? (
                 <Weekley data={dataFiveDays} tempFSet={tempFSet} />
               ) : (
-                "No Weather To Show"
+                <h3 className="dataContainer">{state}</h3>
               )}
             </>
           )}
@@ -123,7 +126,7 @@ function App() {
               {dataEveryThirdHour ? (
                 <Hourly data={dataEveryThirdHour} tempFSet={tempFSet} />
               ) : (
-                "No Weather To Show"
+                <h3 className="dataContainer">{state}</h3>
               )}
             </>
           )}

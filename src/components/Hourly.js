@@ -1,5 +1,4 @@
 import Hour from "./Hour";
-import Now from "./Now";
 
 const Hourly = ({ data, tempFSet }) => {
   return (
